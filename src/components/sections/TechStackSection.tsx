@@ -16,18 +16,20 @@ export function TechStackSection() {
         <>
           <SectionHeading eyebrow={content.stack.eyebrow} title={content.stack.heading} isInView={isInView} />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
             {content.stack.categories.map((category, index) => (
               <motion.div
                 key={category.id}
+                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : undefined}
                 transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
               >
-                <SectionCard>
+                <SectionCard className="h-full flex flex-col">
                   <h3 className="mb-5 font-display text-sm font-semibold uppercase tracking-[0.3em] text-primary">
                     {category.label}
                   </h3>
+
                   <div className="flex flex-wrap gap-2">
                     {category.technologies.map((technology) => (
                       <span

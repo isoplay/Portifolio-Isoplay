@@ -1,3 +1,5 @@
+"use client";
+
 import { useInView } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
@@ -15,11 +17,17 @@ export function Section({
   containerClassName = "mx-auto max-w-6xl",
 }: SectionProps) {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  const isInView = useInView(sectionRef, {
+    once: true,
+    margin: "-100px 0px",
+  });
 
   return (
     <section id={id} ref={sectionRef} className={className}>
-      <div className={containerClassName}>{children(isInView)}</div>
+      <div className={containerClassName}>
+        {children(isInView)}
+      </div>
     </section>
   );
 }

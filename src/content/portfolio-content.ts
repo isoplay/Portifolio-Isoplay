@@ -6,7 +6,7 @@ export const sectionOrder: SectionId[] = ["about", "stack", "projects", "journey
 
 export const portfolioLinks = {
   brandLabel: "igor.dev",
-  email: "igor@desouza.dev",
+  email: "igorm9757@gmail.com",
   githubUrl: "https://github.com/isoplay",
 } as const;
 
@@ -136,10 +136,26 @@ const ptContent: SiteCopy = {
     eyebrow: "Tech stack",
     heading: "Ferramentas que utilizo",
     categories: [
-      { id: "frontend", label: "Frontend", technologies: ["React", "Next.js"] },
-      { id: "backend", label: "Backend", technologies: ["Node.js", "PHP", "Python"] },
-      { id: "databases", label: "Bancos de dados", technologies: ["MySQL", "PostgreSQL", "MongoDB"] },
-      { id: "tools", label: "Ferramentas", technologies: ["Docker", "Git"] },
+      {
+        id: "languages",
+        label: "Linguagens",
+        technologies: ["JavaScript (ES6+)", "TypeScript", "PHP", "Python", "C#"],
+      },
+      {
+        id: "frontend",
+        label: "Frontend",
+        technologies: ["React.js", "Next.js", "React Native"],
+      },
+      {
+        id: "databases",
+        label: "Bancos de dados",
+        technologies: ["MySQL", "PostgreSQL", "MongoDB", "Supabase"],
+      },
+      {
+        id: "tools",
+        label: "Ferramentas",
+        technologies: ["Docker", "Git", "GitHub"],
+      }
     ],
   },
   projects: {

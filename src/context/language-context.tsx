@@ -1,7 +1,20 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+"use client";
+
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 
 import { portfolioContent, type Language } from "@/content/portfolio-content";
-import { DEFAULT_LANGUAGE, getInitialLanguage, LANGUAGE_STORAGE_KEY } from "@/utils/language";
+import {
+  DEFAULT_LANGUAGE,
+  getInitialLanguage,
+  LANGUAGE_STORAGE_KEY,
+} from "@/utils/language";
 
 interface LanguageContextValue {
   language: Language;
@@ -9,18 +22,25 @@ interface LanguageContextValue {
   content: (typeof portfolioContent)[Language];
 }
 
-const LanguageContext = createContext<LanguageContextValue | null>(null);
+const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 function getBrowserLanguage(): Language {
   if (typeof window === "undefined") {
     return DEFAULT_LANGUAGE;
   }
 
-  return getInitialLanguage(window.localStorage.getItem(LANGUAGE_STORAGE_KEY));
+  const stored = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  return getInitialLanguage(stored);
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => getBrowserLanguage());
+  const [language, setLanguage] = useState<Language>(DEFAULT_LANGUAGE);
+
+  // ⬇️ roda só no client (evita mismatch SSR)
+  useEffect(() => {
+    const initialLang = getBrowserLanguage();
+    setLanguage(initialLang);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -33,7 +53,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLanguage,
       content: portfolioContent[language],
     }),
-    [language],
+    [language]
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

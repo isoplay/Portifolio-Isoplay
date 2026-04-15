@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowDown, Mail } from "lucide-react";
 
@@ -8,6 +10,7 @@ export function HeroSection() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
+      {/* Background effects */}
       <div className="background-grid absolute inset-0 opacity-50" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(270_60%_55%/0.08)_0%,_transparent_70%)]" />
       <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-[120px] animate-glow-pulse" />
@@ -17,8 +20,13 @@ export function HeroSection() {
       />
       <div className="absolute left-1/2 top-1/2 h-[300px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/6 blur-[100px]" />
 
+      {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <span className="inline-block rounded-full border border-primary/30 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm">
             {content.hero.badge}
           </span>
@@ -30,7 +38,10 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mb-6 mt-8 font-display text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          {content.hero.nameStart} <span className="text-glow text-primary">{content.hero.nameEnd}</span>
+          {content.hero.nameStart}{" "}
+          <span className="text-glow text-primary">
+            {content.hero.nameEnd}
+          </span>
         </motion.h1>
 
         <motion.p
@@ -64,6 +75,7 @@ export function HeroSection() {
             {content.hero.primaryCta}
             <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
           </a>
+
           <a
             href="#contact"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-8 py-3.5 font-medium text-foreground transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
@@ -74,6 +86,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
